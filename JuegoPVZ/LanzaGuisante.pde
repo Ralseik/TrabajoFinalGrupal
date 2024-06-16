@@ -5,9 +5,11 @@ class LanzaGuisante extends Planta {
   }
   
   void disparar(Proyectil proyectil) {
+    //Implementación para hacer que el lanzaguisante dispare un proyectil
   }
   
   @Override
   void display() {
+    //Implementación para mostrar el lanzaguisante en el tablero
   }
 }

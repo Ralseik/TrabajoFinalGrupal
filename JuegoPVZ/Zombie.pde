@@ -7,8 +7,10 @@ class Zombie extends GameObject {
   }
   
   void mover() {
+    //Implementación para hacer que el zombie se mueva
   }
   
   void comer(Planta planta) {
+    //Implementación para hacer que el zombie se coma a una planta
   }
 }
