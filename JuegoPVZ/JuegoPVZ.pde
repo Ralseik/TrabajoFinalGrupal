@@ -1,3 +1,9 @@
+import ddf.minim.*;
+Minim minim;
+AudioPlayer player;
+AudioPlayer player2;
+
+
 Girasol girasol;
 LanzaGuisante lanzaGuisante;
 Proyectil proyectil;
@@ -7,6 +13,9 @@ Tablero tablero;
 
 void setup() {
   size(800, 600);
+  minim = new Minim(this);
+  player = minim.loadFile("pvzSountrackDay.mp3");
+  player2 = minim.loadFile("MenuPvz.mp3");
   
   //Instanciación de los objetos que utiliza el juego
   girasol = new Girasol(new PVector(0, 0), 100);
@@ -19,7 +28,9 @@ void setup() {
 
 void draw() {
   tablero.display();
-  
+  //reproduce un audio 
+     player2.play();
+
   //Mostrar las diferentes plantas en el tablero
   girasol.display();
   lanzaGuisante.display();
@@ -40,5 +51,8 @@ void draw() {
 }
 
 void keyPressed() {
+         player2.close();
   tablero.keyPressed();
+    player.play();
+       
 }
