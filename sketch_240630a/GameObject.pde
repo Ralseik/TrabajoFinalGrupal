@@ -6,4 +6,7 @@ abstract class GameObject {
     this.posicion = new PVector(x, y);
     this.imagen = img;
   }
+   public void display() {
+    
+  }
 }

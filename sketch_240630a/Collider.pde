@@ -1,5 +1,6 @@
 static class Collider {
-    static boolean validarColision(Proyectil proyectil, Zombie zombie) {
-        return false;
-    }
+ //Validar si existe una colisión entre un proyectil y un zombie.
+  static boolean validarColision(Proyectil proyectil, Zombie zombie) {
+    return false;
+  }
 }
