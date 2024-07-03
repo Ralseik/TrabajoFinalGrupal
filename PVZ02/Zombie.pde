@@ -9,6 +9,7 @@ class Zombie implements IVisualizable {
 
   @Override
   public void display() {
+    //Implementación del método display de la interfaz IVisualizable.
     image(imgComponent.getImagen(), transform.getPosition().x, transform.getPosition().y);
   }
 }
