@@ -1,7 +1,8 @@
-private Zombie zombie;
 private Lanzaguisante lanzaguisante;
 private Girasol girasol;
+
 private ArrayList<Proyectil> proyectiles;
+private GestorZombies gestor;
 
 public void setup() {
   size(1280, 720);
@@ -16,10 +17,15 @@ public void setup() {
   Transform lanzaguisantesPosicion = new Transform(300, 100);
   lanzaguisante = new Lanzaguisante(lanzaguisantesImagen, lanzaguisantesPosicion);
   
-  //Inicialización de los componentes del zombie.
+  gestor = new GestorZombies();
+  //Inicialización del componente "ImageComponent" de los zombies.
   ImageComponent zombieImagen = new ImageComponent(loadImage("zombie.png"));
-  Transform zombiePosicion = new Transform(700, 100);
-  zombie = new Zombie(zombieImagen, zombiePosicion);
+  
+  //Inicialización del componente "Transform" de los zombies.
+  for (int i=0; i<3; i++) {
+    Transform zombiePosicion = new Transform(random(width/2, width), random(0, height));
+    gestor.agregarZombie(new Zombie(zombieImagen, zombiePosicion, 100));
+  }
   
   proyectiles = new ArrayList<Proyectil>();
   frameRate(60);
@@ -30,7 +36,6 @@ public void draw() {
   float deltaTime = 1.0 / frameRate;
   
   //Hacer que los objetos se dibujen en el lienzo por medio del método display.
-  zombie.display();
   lanzaguisante.display();
   girasol.display();
   
@@ -44,6 +49,11 @@ public void draw() {
       proyectiles.remove(i);
     }
   }
+  
+  //Hacer que el gestor dibuje los zombies en el lienzo. 
+  gestor.mostrarZombies();
+  //Hacer que el gestor habilite la colisión entre zombies y proyectiles.
+  gestor.verificarColision(proyectiles);
 }
 
 public void keyPressed() {
