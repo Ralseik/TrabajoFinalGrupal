@@ -1,8 +1,7 @@
 private Lanzaguisante lanzaguisante;
 private Girasol girasol;
-
-private ArrayList<Proyectil> proyectiles;
 private GestorZombies gestor;
+private ArrayList<Proyectil> proyectiles;
 
 public void setup() {
   size(1280, 720);
@@ -39,12 +38,15 @@ public void draw() {
   lanzaguisante.display();
   girasol.display();
   
-  //Hacer que los proyectiles se muestren el lienzo y se eliminen al salir de él.
+  // Actualizar la posición del lanzaguisante según su estado actual.
+  lanzaguisante.maquinaEstadosLanzaguisante.actualizar(lanzaguisante.transform);
+  
+  //Hacer que los proyectiles se muestren el lienzo.
   for (int i = proyectiles.size()-1; i>=0; i--) {
     Proyectil proyectil = proyectiles.get(i);
     proyectil.mover(deltaTime);
     proyectil.mostrar();
-    
+    //Hacer que los proyectiles se eliminen al salir del lienzo.
     if (proyectil.pos.x > width) {
       proyectiles.remove(i);
     }
@@ -60,5 +62,18 @@ public void keyPressed() {
   //Disparar proyectiles al presionar la tecla ESPACIO.
   if (key == ' ') {
     proyectiles.add(lanzaguisante.disparar());
+  }
+  //Mover al lanzaguisantes al apretar las teclas "w/W" y "s/S".
+  if (key == 'w' || key == 'W') {
+    lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.moveUp);
+  } else if (key == 's' || key == 'S') {
+    lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.moveDown);
+  }
+}
+
+void keyReleased() {
+  //Hacer que el lanzaguisantes se deje de mover al soltar las teclas.
+  if (key == 'w' || key == 'W' || key == 's' || key == 'S') {
+    lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.idle);
   }
 }

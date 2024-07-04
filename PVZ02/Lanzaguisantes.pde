@@ -1,10 +1,12 @@
 class Lanzaguisante implements IVisualizable {
   private ImageComponent imgComponent;
   private Transform transform;
+  private MaquinaEstadosLanzaguisante maquinaEstadosLanzaguisante;
 
-  Lanzaguisante(ImageComponent imgComponent, Transform transform) {
+ Lanzaguisante(ImageComponent imgComponent, Transform transform) {
     this.imgComponent = imgComponent;
     this.transform = transform;
+    this.maquinaEstadosLanzaguisante = new MaquinaEstadosLanzaguisante();
   }
 
   @Override
