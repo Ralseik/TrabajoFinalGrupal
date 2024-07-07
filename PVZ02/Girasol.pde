@@ -1,15 +1,16 @@
 class Girasol implements IVisualizable {
-  private ImageComponent imgComponent;
+  private Gif gif;
   private Transform transform;
 
-  Girasol(ImageComponent imgComponent, Transform transform) {
-    this.imgComponent = imgComponent;
+  Girasol(Gif gif, Transform transform) {
+    this.gif = gif;
     this.transform = transform;
+    this.gif.play();
   }
 
   @Override
   public void display() {
     //Implementación del método display de la interfaz IVisualizable.
-    image(imgComponent.getImagen(), transform.getPosition().x, transform.getPosition().y);
+    image(gif, transform.getPosition().x, transform.getPosition().y);
   }
 }

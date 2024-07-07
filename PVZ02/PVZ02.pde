@@ -15,6 +15,9 @@ private PImage pantallaJuego;
 private PImage pantallaVictoria;
 private PImage pantallaDerrota;
 
+import gifAnimation.*;
+private Gif gifGirasol;
+
 public void setup() {
   size(1280, 720);
   frameRate(60);
@@ -36,14 +39,16 @@ public void setup() {
   minim = new Minim (this);
   player2 = minim.loadFile("pvzSountrackDay.mp3");
   
+  //Inicialización de la animación para el girasol.
+  gifGirasol = new Gif(this, "asd.gif");
+  
   //Inicialización de los componentes de cinco girasoles.
   for (int i = 0; i < 5; i++) {
-    ImageComponent girasolImagen = new ImageComponent(loadImage("girasol.png"));
     Transform girasolPosicion = new Transform(415, 100 + i * 120);
-    girasoles.add(new Girasol(girasolImagen, girasolPosicion));
+    girasoles.add(new Girasol(gifGirasol, girasolPosicion));
   }
   
-  //Inicialización de los componentes del lanzaguisantes.
+  // Inicialización de los componentes del lanzaguisantes.
   ImageComponent lanzaguisanteImagen = new ImageComponent(loadImage("lanzaguisantes.png"));
   Transform lanzaguisantePosicion = new Transform(500, height/2-20);
   lanzaguisante = new Lanzaguisante(lanzaguisanteImagen, lanzaguisantePosicion);
