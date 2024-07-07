@@ -1,7 +1,7 @@
 import ddf.minim.*;
-Minim minim;
-AudioPlayer player;
-AudioPlayer player2;
+private Minim minim;
+private AudioPlayer player;
+private AudioPlayer player2;
 
 private Lanzaguisante lanzaguisante;
 private GestorZombies gestor;
@@ -66,11 +66,11 @@ public void setup() {
 }
 
 public void draw() {
- pantalla.actualizarEstado();
+  pantalla.actualizarEstado();
 }
 
 public void keyPressed() {
-   pantalla.keyPressed();
+  pantalla.keyPressed();
 
 }
 
