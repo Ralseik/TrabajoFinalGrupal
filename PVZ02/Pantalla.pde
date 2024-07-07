@@ -8,7 +8,6 @@ class Pantalla {
   public void actualizarEstado() {
     //Implementación del método dedicado a actualizar la pantalla del juego. 
     background(255);
-
     float deltaTime = 1.0 / frameRate;
 
     switch (estadoPantalla) {
@@ -18,7 +17,6 @@ class Pantalla {
       break;
         
       case MaquinaEstadosPantalla.JUEGO:
-     
       mostrarJuego(deltaTime);
       break;
 
@@ -33,7 +31,8 @@ class Pantalla {
   }
   
   private void mostrarMenu() {
-       player.play();
+    //Reproducir la música del menú.
+    player.play();
     //Dibujar la pantalla del menú.
     fill(0);
     textAlign(CENTER);
@@ -44,14 +43,21 @@ class Pantalla {
   }
   
   private void mostrarJuego(float deltaTime) {
+    //Reproducir la música del menú.
+    player2.play();
+      player.close();    
     //Dibujar la pantalla del juego.
-      player2.play();
-        player.close();
     image(fondo, 0, 0, width, height);
-    //Hacer que los objetos se dibujen en el lienzo por medio del método display.
+    
+    //Hacer que el lanzaguisante se dibuje por medio del método display.
     lanzaguisante.display();
-      
-    // Actualizar la posición del lanzaguisante según su estado actual.
+    
+    //Hacer que los girasoles se dibujen por medio del método display.
+    for (Girasol girasol : girasoles) {
+      girasol.display();
+    }
+    
+    //Actualizar la posición del lanzaguisante según su estado actual.
     lanzaguisante.maquinaEstadosLanzaguisante.actualizar(lanzaguisante.transform);
       
     //Hacer que el gestor dibuje los zombies en el lienzo. 
@@ -106,11 +112,18 @@ class Pantalla {
       if (key == ' ') {
         proyectiles.add(lanzaguisante.disparar());
       }
+      
       //Mover al lanzaguisantes al apretar las teclas "w/W" y "s/S".
       if (key == 'w' || key == 'W') {
         lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.moveUp);
       } else if (key == 's' || key == 'S') {
         lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.moveDown);
+      }
+      
+      if (key == 'v' || key == 'V') {
+        estadoPantalla = MaquinaEstadosPantalla.VICTORIA; //Mostrar la pantalla de VICTORIA al apretar la tecla "V".
+      } else if (key == 'x' || key == 'X') {
+        estadoPantalla = MaquinaEstadosPantalla.DERROTA; //Mostrar la pantalla de DERROTA al apretar la tecla "X".
       }
       break;
       

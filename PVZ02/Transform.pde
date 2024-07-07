@@ -5,10 +5,6 @@ class Transform {
     this.posicion = new PVector(x, y);
   }
 
-  Transform(PVector posicion) {
-    this.posicion = posicion;
-  }
-
   public PVector getPosition() {
     return this.posicion;
   }

@@ -18,6 +18,7 @@ public void setup() {
   fondo = loadImage("jardin.png");
   
   proyectiles = new ArrayList<Proyectil>();
+  girasoles = new ArrayList<Girasol>();
 
   //Inicialización de la pantalla del juego.
   pantalla = new Pantalla();
@@ -26,7 +27,7 @@ public void setup() {
   minim = new Minim (this);
   player = minim.loadFile("MenuPvz.mp3");
   //sonido2
-   minim = new Minim (this);
+  minim = new Minim (this);
   player2 = minim.loadFile("pvzSountrackDay.mp3");
   
   //Inicialización de los componentes de cinco girasoles.
@@ -56,9 +57,6 @@ public void setup() {
 public void draw() {
  pantalla.actualizarEstado();
 }
- 
-
-
 
 public void keyPressed() {
    pantalla.keyPressed();
