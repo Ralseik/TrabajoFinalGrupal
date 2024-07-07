@@ -34,20 +34,15 @@ class Pantalla {
     //Reproducir la música del menú.
     player.play();
     //Dibujar la pantalla del menú.
-    fill(0);
-    textAlign(CENTER);
-    textSize(30);
-    text("Menú Principal", width / 2, height / 2);
-    textSize(20);
-    text("Presiona Enter para comenzar", width / 2, height / 2 + 50);
+    image(pantallaMenu, 0, 0, width, height);
   }
   
   private void mostrarJuego(float deltaTime) {
-    //Reproducir la música del menú.
+    //Reproducir la música del juego.
     player2.play();
-      player.close();    
+    player.close();    
     //Dibujar la pantalla del juego.
-    image(fondo, 0, 0, width, height);
+    image(pantallaJuego, 0, 0, width, height);
     
     //Hacer que el lanzaguisante se dibuje por medio del método display.
     lanzaguisante.display();
@@ -78,23 +73,15 @@ class Pantalla {
   }
   
   private void mostrarVictoria() {
+    player2.close();
     //Dibujar la pantalla de victoria.
-    fill(0, 255, 0);
-    textAlign(CENTER);
-    textSize(30);
-    text("¡Has ganado!", width / 2, height / 2);
-    textSize(20);
-    text("Presiona Enter para volver al menú", width / 2, height / 2 + 50);
+    image(pantallaVictoria, 0, 0, width, height);
   } 
   
   private void mostrarDerrota() {
+    player2.close();
     //Dibujar la pantalla de derrota.
-    fill(255, 0, 0);
-    textAlign(CENTER);
-    textSize(30);
-    text("¡Has perdido!", width / 2, height / 2);
-    textSize(20);
-    text("Presiona Enter para volver al menú", width / 2, height / 2 + 50);
+    image(pantallaDerrota, 0, 0, width, height);
   }
 
   public void keyPressed() {

@@ -10,12 +10,18 @@ private Pantalla pantalla;
 private ArrayList<Proyectil> proyectiles;
 private ArrayList<Girasol> girasoles;
 
-private PImage fondo;
+private PImage pantallaMenu;
+private PImage pantallaJuego;
+private PImage pantallaVictoria;
+private PImage pantallaDerrota;
 
 public void setup() {
   size(1280, 720);
   frameRate(60);
-  fondo = loadImage("jardin.png");
+  pantallaMenu = loadImage("pantallaMenu.png");
+  pantallaJuego = loadImage("pantallaJuego.png");
+  pantallaVictoria = loadImage("pantallaVictoria.png");
+  pantallaDerrota = loadImage("pantallaDerrota.png");
   
   proyectiles = new ArrayList<Proyectil>();
   girasoles = new ArrayList<Girasol>();
@@ -23,10 +29,10 @@ public void setup() {
   //Inicialización de la pantalla del juego.
   pantalla = new Pantalla();
   
-  //sonido
+  //Música del menú.
   minim = new Minim (this);
   player = minim.loadFile("MenuPvz.mp3");
-  //sonido2
+  //Música del juego
   minim = new Minim (this);
   player2 = minim.loadFile("pvzSountrackDay.mp3");
   
