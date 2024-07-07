@@ -50,7 +50,6 @@ class Pantalla {
     image(fondo, 0, 0, width, height);
     //Hacer que los objetos se dibujen en el lienzo por medio del método display.
     lanzaguisante.display();
-    girasol.display();
       
     // Actualizar la posición del lanzaguisante según su estado actual.
     lanzaguisante.maquinaEstadosLanzaguisante.actualizar(lanzaguisante.transform);

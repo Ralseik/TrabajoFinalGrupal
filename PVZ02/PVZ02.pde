@@ -2,25 +2,26 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer player;
 AudioPlayer player2;
+
 private Lanzaguisante lanzaguisante;
-private Girasol girasol;
 private GestorZombies gestor;
 private Pantalla pantalla;
+
 private ArrayList<Proyectil> proyectiles;
-private int estadoPantalla;
+private ArrayList<Girasol> girasoles;
+
 private PImage fondo;
 
 public void setup() {
   size(1280, 720);
-   frameRate(60);
+  frameRate(60);
   fondo = loadImage("jardin.png");
-  //2324224242
-   proyectiles = new ArrayList<Proyectil>();
+  
+  proyectiles = new ArrayList<Proyectil>();
 
-  //****Inicialización de la pantalla del juego.
+  //Inicialización de la pantalla del juego.
   pantalla = new Pantalla();
- // Inicialización de la pantalla MENU del juego.
-  estadoPantalla = MaquinaEstadosPantalla.MENU;
+  
   //sonido
   minim = new Minim (this);
   player = minim.loadFile("MenuPvz.mp3");
@@ -28,31 +29,31 @@ public void setup() {
    minim = new Minim (this);
   player2 = minim.loadFile("pvzSountrackDay.mp3");
   
-  
-  //Inicialización de los componentes del girasol.
-  ImageComponent girasolImagen = new ImageComponent(loadImage("girasol.png"));
-  Transform girasolPosicion = new Transform(100, 100);
-  girasol = new Girasol(girasolImagen, girasolPosicion);
+  //Inicialización de los componentes de cinco girasoles.
+  for (int i = 0; i < 5; i++) {
+    ImageComponent girasolImagen = new ImageComponent(loadImage("girasol.png"));
+    Transform girasolPosicion = new Transform(415, 100 + i * 120);
+    girasoles.add(new Girasol(girasolImagen, girasolPosicion));
+  }
   
   //Inicialización de los componentes del lanzaguisantes.
-  ImageComponent lanzaguisantesImagen = new ImageComponent(loadImage("lanzaguisantes.png"));
-  Transform lanzaguisantesPosicion = new Transform(300, 100);
-  lanzaguisante = new Lanzaguisante(lanzaguisantesImagen, lanzaguisantesPosicion);
+  ImageComponent lanzaguisanteImagen = new ImageComponent(loadImage("lanzaguisantes.png"));
+  Transform lanzaguisantePosicion = new Transform(500, height/2-20);
+  lanzaguisante = new Lanzaguisante(lanzaguisanteImagen, lanzaguisantePosicion);
   
+  //Inicialización del gestor de colisiones entre proyectiles y zombies.
   gestor = new GestorZombies();
   //Inicialización del componente "ImageComponent" de los zombies.
   ImageComponent zombieImagen = new ImageComponent(loadImage("zombie.png"));
   
   //Inicialización del componente "Transform" de los zombies.
   for (int i=0; i<3; i++) {
-    Transform zombiePosicion = new Transform(random(width/2, width), random(0, height));
+    Transform zombiePosicion = new Transform(random(width/2+108, width-108), random(66, height-198));
     gestor.agregarZombie(new Zombie(zombieImagen, zombiePosicion, 100));
   }
-  
 }
 
 public void draw() {
- 
  pantalla.actualizarEstado();
 }
  
