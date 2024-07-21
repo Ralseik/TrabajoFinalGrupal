@@ -1,7 +1,10 @@
 import ddf.minim.*;
+
 private Minim minim;
-private AudioPlayer player;
-private AudioPlayer player2;
+private AudioPlayer musicaMenu;
+private AudioPlayer musicaJuego;
+private AudioPlayer musicaVictoria;
+private AudioPlayer musicaDerrota;
 
 private Lanzaguisante lanzaguisante;
 private GestorZombies gestor;
@@ -31,16 +34,19 @@ public void setup() {
 
   //Inicialización de la pantalla del juego.
   pantalla = new Pantalla();
-  
+
+  minim = new Minim (this);
   //Música del menú.
-  minim = new Minim (this);
-  player = minim.loadFile("MenuPvz.mp3");
-  //Música del juego
-  minim = new Minim (this);
-  player2 = minim.loadFile("pvzSountrackDay.mp3");
+  musicaMenu = minim.loadFile("musicaMenu.mp3");
+  //Música del juego.
+  musicaJuego = minim.loadFile("musicaJuego.mp3");
+  //Música de victoria.
+  musicaVictoria = minim.loadFile("musicaVictoria.mp3");
+  //Música de derrota.
+  musicaDerrota = minim.loadFile("musicaDerrota.mp3");
   
   //Inicialización de la animación para el girasol.
-  gifGirasol = new Gif(this, "asd.gif");
+  gifGirasol = new Gif(this, "girasol.gif");
   
   //Inicialización de los componentes de cinco girasoles.
   for (int i = 0; i < 5; i++) {

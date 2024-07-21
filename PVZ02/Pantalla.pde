@@ -32,15 +32,22 @@ class Pantalla {
   
   private void mostrarMenu() {
     //Reproducir la música del menú.
-    player.play();
+    musicaMenu.play();
+    
+    //Pausar y rebobinar la música de las pantallas de derrota y victoria para su reutilización.
+    musicaVictoria.pause();
+    musicaVictoria.rewind();
+    musicaDerrota.pause();
+    musicaDerrota.rewind();
+    
     //Dibujar la pantalla del menú.
     image(pantallaMenu, 0, 0, width, height);
   }
   
   private void mostrarJuego(float deltaTime) {
     //Reproducir la música del juego.
-    player2.play();
-    player.close();    
+    musicaJuego.play();
+    
     //Dibujar la pantalla del juego.
     image(pantallaJuego, 0, 0, width, height);
     
@@ -73,13 +80,23 @@ class Pantalla {
   }
   
   private void mostrarVictoria() {
-    player2.close();
+    //Pausar momentáneamente la música de la pantalla del juego.
+    musicaJuego.pause();
+    
+    //Reproducir la musica de la pantalla de victoria.
+    musicaVictoria.play();
+    
     //Dibujar la pantalla de victoria.
     image(pantallaVictoria, 0, 0, width, height);
   } 
   
   private void mostrarDerrota() {
-    player2.close();
+    //Pausar momentáneamente la música de la pantalla del juego.
+    musicaJuego.pause();
+    
+    //Reproducir la musica de la pantalla de derrota.
+    musicaDerrota.play();
+    
     //Dibujar la pantalla de derrota.
     image(pantallaDerrota, 0, 0, width, height);
   }
@@ -91,6 +108,11 @@ class Pantalla {
         // Lógica de manejo de teclas para el menú
         if (keyCode == ENTER) {
           estadoPantalla = MaquinaEstadosPantalla.JUEGO;
+          
+          //Reproducir nuevamente la música de la pantalla del juego.
+          musicaMenu.pause();
+          musicaJuego.play();
+          musicaJuego.rewind();
         }
       break;
       
@@ -113,11 +135,24 @@ class Pantalla {
         estadoPantalla = MaquinaEstadosPantalla.DERROTA; //Mostrar la pantalla de DERROTA al apretar la tecla "X".
       }
       break;
-      
+            
       case MaquinaEstadosPantalla.DERROTA:
+        if (keyCode == ENTER) {
+          estadoPantalla = MaquinaEstadosPantalla.MENU;
+          
+          //Reproducir nuevamente la música de la pantalla del menú. 
+          musicaMenu.play();
+          musicaMenu.rewind();
+        }
+      break;
+      
       case MaquinaEstadosPantalla.VICTORIA:
         if (keyCode == ENTER) {
           estadoPantalla = MaquinaEstadosPantalla.MENU;
+          
+          //Reproducir nuevamente la música de la pantalla del menú. 
+          musicaMenu.play();
+          musicaMenu.rewind();
         }
       break;
     }
