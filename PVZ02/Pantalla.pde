@@ -8,7 +8,6 @@ class Pantalla {
   public void actualizarEstado() {
     //Implementación del método dedicado a actualizar la pantalla del juego. 
     background(255);
-    float deltaTime = 1.0 / frameRate;
 
     switch (estadoPantalla) {
       //Encapsulación de los métodos que contienen cada pantalla.
@@ -17,7 +16,7 @@ class Pantalla {
       break;
         
       case MaquinaEstadosPantalla.JUEGO:
-      mostrarJuego(deltaTime);
+      mostrarJuego();
       break;
 
       case MaquinaEstadosPantalla.DERROTA:
@@ -44,35 +43,35 @@ class Pantalla {
     image(pantallaMenu, 0, 0, width, height);
   }
   
-  private void mostrarJuego(float deltaTime) {
-    //Reproducir la música del juego.
+  private void mostrarJuego() {
+    // Reproducir la música del juego.
     musicaJuego.play();
     
-    //Dibujar la pantalla del juego.
+    // Dibujar la pantalla del juego.
     image(pantallaJuego, 0, 0, width, height);
-    
-    //Hacer que el lanzaguisante se dibuje por medio del método display.
+ 
+    // Hacer que el lanzaguisante se dibuje por medio del método display.
     lanzaguisante.display();
-    
-    //Hacer que los girasoles se dibujen por medio del método display.
+ 
+    // Hacer que los girasoles se dibujen por medio del método display.
     for (Girasol girasol : girasoles) {
       girasol.display();
     }
     
-    //Actualizar la posición del lanzaguisante según su estado actual.
+    // Actualizar la posición del lanzaguisante según su estado actual.
     lanzaguisante.maquinaEstadosLanzaguisante.actualizar(lanzaguisante.transform);
-      
-    //Hacer que el gestor dibuje los zombies en el lienzo. 
+    
+    // Hacer que el gestor dibuje los zombies en el lienzo.
     gestor.mostrarZombies();
-    //Hacer que el gestor habilite la colisión entre zombies y proyectiles.
+    // Hacer que el gestor habilite la colisión entre zombies y proyectiles.
     gestor.verificarColision(proyectiles);
-      
-    //Hacer que los proyectiles se muestren el lienzo.
+    
+    // Hacer que los proyectiles se muestren el lienzo.
     for (int i = proyectiles.size()-1; i>=0; i--) {
       Proyectil proyectil = proyectiles.get(i);
-      proyectil.mover(deltaTime);
+      proyectil.mover(time.getDeltaTime()); // Usar deltaTime desde la clase Time
       proyectil.mostrar();
-      //Hacer que los proyectiles se eliminen al salir del lienzo.
+      // Hacer que los proyectiles se eliminen al salir del lienzo.
       if (proyectil.pos.x > width) {
         proyectiles.remove(i);
       }

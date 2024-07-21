@@ -9,6 +9,7 @@ private AudioPlayer musicaDerrota;
 private Lanzaguisante lanzaguisante;
 private GestorZombies gestor;
 private Pantalla pantalla;
+private Time time;
 
 private ArrayList<Proyectil> proyectiles;
 private ArrayList<Girasol> girasoles;
@@ -34,6 +35,9 @@ public void setup() {
 
   //Inicialización de la pantalla del juego.
   pantalla = new Pantalla();
+  
+  //Inicialización de deltaTime.
+  time = new Time();
 
   minim = new Minim (this);
   //Música del menú.
@@ -72,6 +76,8 @@ public void setup() {
 }
 
 public void draw() {
+  time.actualizarTiempo(frameRate);
+  
   pantalla.actualizarEstado();
 }
 
