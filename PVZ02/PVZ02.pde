@@ -9,6 +9,7 @@ private AudioPlayer musicaDerrota;
 private Lanzaguisante lanzaguisante;
 private GestorZombies gestor;
 private Pantalla pantalla;
+private Time time;
 
 private ArrayList<Proyectil> proyectiles;
 private ArrayList<Girasol> girasoles;
@@ -34,6 +35,9 @@ public void setup() {
 
   //Inicialización de la pantalla del juego.
   pantalla = new Pantalla();
+  
+  //Inicialización de deltaTime.
+  time = new Time();
 
   minim = new Minim (this);
   //Música del menú.
@@ -65,13 +69,15 @@ public void setup() {
   ImageComponent zombieImagen = new ImageComponent(loadImage("zombie.png"));
   
   //Inicialización del componente "Transform" de los zombies.
-  for (int i=0; i<3; i++) {
+  for (int i=0; i<5; i++) {
     Transform zombiePosicion = new Transform(random(width/2+108, width-108), random(66, height-198));
     gestor.agregarZombie(new Zombie(zombieImagen, zombiePosicion, 100));
   }
 }
 
 public void draw() {
+  time.actualizarTiempo(frameRate);
+  
   pantalla.actualizarEstado();
 }
 
