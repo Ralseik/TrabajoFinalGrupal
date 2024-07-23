@@ -17,6 +17,6 @@ class Lanzaguisante implements IVisualizable {
   
   public Proyectil disparar() {
     //Implementación de la lógica de disparo del lanzaguisantes.
-    return new Proyectil(loadImage("proyectil.png"), transform.getPosition().x + imgComponent.getImagen().width/2+28, transform.getPosition().y+7);
+    return new Proyectil(loadImage("proyectil.png"), transform.getPosition().x + imgComponent.getImagen().width/2+28, transform.getPosition().y+3.5);
   }
 }
