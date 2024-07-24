@@ -67,6 +67,8 @@ class Pantalla {
     gestor.verificarColision(proyectiles);
     //Hacer que el gestor habilite la colision entre zombies y proyectiles.
     gestor.verificarEncontronazo(lanzaguisante);
+    //Hacer que el gestor habilite la colision entre zombies y girasoles.
+    gestor.verificarPlanticidio();
     
     //Hacer que los proyectiles se muestren el lienzo.
     for (int i = proyectiles.size()-1; i>=0; i--) {
@@ -132,12 +134,6 @@ class Pantalla {
         lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.moveUp);
       } else if (key == 's' || key == 'S') {
         lanzaguisante.maquinaEstadosLanzaguisante.cambiarEstado(MaquinaEstadosLanzaguisante.moveDown);
-      }
-      
-      if (key == 'v' || key == 'V') {
-        estadoPantalla = MaquinaEstadosPantalla.VICTORIA; //Mostrar la pantalla de VICTORIA al apretar la tecla "V".
-      } else if (key == 'x' || key == 'X') {
-        estadoPantalla = MaquinaEstadosPantalla.DERROTA; //Mostrar la pantalla de DERROTA al apretar la tecla "X".
       }
       break;
             

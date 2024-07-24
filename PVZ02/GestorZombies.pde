@@ -57,4 +57,15 @@ class GestorZombies {
       }
     }
   }
+  
+  public void verificarPlanticidio() {
+    for (Zombie zombie : zombies) {
+      //Verificar si un zombie ha llegado a la linea de los girasoles.
+      if (zombie.transform.getPosition().x <= 450) {
+        //En caso de haber llegado a la línea mostrar la pantalla de derrota
+        pantalla.terminarJuego();
+        break;
+      }
+    }
+  }
 }
