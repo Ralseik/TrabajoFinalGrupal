@@ -52,7 +52,7 @@ class GestorZombies {
                zombie.transform.getPosition().y + lanzaguisante.imgComponent.getImagen().height / 2) 
                < (zombie.getImagen().getImagen().width / 2 + lanzaguisante.imgComponent.getImagen().width / 2)) {
         //En caso de existir una colision mostrar la pantalla de derrota.
-        pantalla.terminarJuego();
+        pantalla.perderJuego();
         break;
       }
     }
@@ -63,9 +63,15 @@ class GestorZombies {
       //Verificar si un zombie ha llegado a la linea de los girasoles.
       if (zombie.transform.getPosition().x <= 450) {
         //En caso de haber llegado a la línea mostrar la pantalla de derrota
-        pantalla.terminarJuego();
+        pantalla.perderJuego();
         break;
       }
+    }
+  }
+  
+  public void verificarZombicidio() {
+    if (zombies.isEmpty()) {
+      pantalla.ganarJuego();
     }
   }
 }

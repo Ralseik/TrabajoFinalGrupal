@@ -69,6 +69,8 @@ class Pantalla {
     gestor.verificarEncontronazo(lanzaguisante);
     //Hacer que el gestor habilite la colision entre zombies y girasoles.
     gestor.verificarPlanticidio();
+    //Hacer que el gestor detecte cuando se hayan matado todos los zombies.
+    gestor.verificarZombicidio();
     
     //Hacer que los proyectiles se muestren el lienzo.
     for (int i = proyectiles.size()-1; i>=0; i--) {
@@ -104,8 +106,39 @@ class Pantalla {
     image(pantallaDerrota, 0, 0, width, height);
   }
   
-  public void terminarJuego() {
+  public void perderJuego() {
     estadoPantalla = MaquinaEstadosPantalla.DERROTA;
+    reiniciarJuego();
+  }
+  
+  public void ganarJuego() {
+    estadoPantalla = MaquinaEstadosPantalla.VICTORIA;
+    reiniciarJuego();
+  }
+  
+  private void reiniciarJuego() {
+    //Eliminar todos los elementos de los arraylists previamente iniciados.
+    proyectiles.clear();
+    girasoles.clear();
+    
+    //Inicializar nuevamente todos los objetos y componentes del juego.
+    gestor = new GestorZombies();
+    
+    //Lanzaguisante.
+    lanzaguisante = new Lanzaguisante(new ImageComponent(loadImage("lanzaguisantes.png")), new Transform(500, height/2-20));
+  
+    //Girasoles.
+    for (int i = 0; i < 5; i++) {
+      Transform girasolPosicion = new Transform(415, 100 + i * 120);
+      girasoles.add(new Girasol(gifGirasol, girasolPosicion));
+    }
+  
+    //Zombies.
+    ImageComponent zombieImagen = new ImageComponent(loadImage("zombie.png"));
+    for (int i = 0; i < 5; i++) {
+      Transform zombiePosicion = new Transform(random(width/2 + 108, width - 108), random(66, height - 198));
+      gestor.agregarZombie(new Zombie(zombieImagen, zombiePosicion, 100));
+    }
   }
   
   public void keyPressed() {
