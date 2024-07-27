@@ -134,10 +134,9 @@ class Pantalla {
     }
   
     //Zombies.
-    ImageComponent zombieImagen = new ImageComponent(loadImage("zombie.png"));
-    for (int i = 0; i < 5; i++) {
-      Transform zombiePosicion = new Transform(random(width/2 + 108, width - 108), random(66, height - 198));
-      gestor.agregarZombie(new Zombie(zombieImagen, zombiePosicion, 100));
+    for (int i=0; i<5; i++) {
+      Transform zombiePosicion = new Transform(random(width/2+108, width-108), random(66, height-198));
+      gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
     }
   }
   

@@ -26,9 +26,9 @@ class GestorZombies {
         //Verificar si existe una colisión entre un zombie y un proyectil.
         if (dist(proyectil.pos.x, 
                  proyectil.pos.y, 
-                 zombie.transform.getPosition().x + zombie.getImagen().getImagen().width / 2,
-                 zombie.transform.getPosition().y + zombie.getImagen().getImagen().height / 2) 
-                 < zombie.getImagen().getImagen().height / 2) {
+                 zombie.transform.getPosition().x + zombie.getGif().width / 2,
+                 zombie.transform.getPosition().y + zombie.getGif().height / 2) 
+                 < zombie.getGif().height / 2) {
           //En caso de existir una colision restar resistencia al zombie y eliminar el proyectil.
           zombie.debilitar(10);
           proyectiles.remove(i);
@@ -48,9 +48,9 @@ class GestorZombies {
       //Verificar si existe una colisión entre un zombie y el lanzaguisantes.
       if (dist(lanzaguisante.transform.getPosition().x, 
                lanzaguisante.transform.getPosition().y, 
-               zombie.transform.getPosition().x + lanzaguisante.imgComponent.getImagen().width / 2, 
+               zombie.transform.getPosition().x + lanzaguisante.imgComponent.getImagen().width / 2+25, 
                zombie.transform.getPosition().y + lanzaguisante.imgComponent.getImagen().height / 2) 
-               < (zombie.getImagen().getImagen().width / 2 + lanzaguisante.imgComponent.getImagen().width / 2)) {
+               < (zombie.getGif().width / 2 + lanzaguisante.imgComponent.getImagen().width / 2)) {
         //En caso de existir una colision mostrar la pantalla de derrota.
         pantalla.perderJuego();
         break;

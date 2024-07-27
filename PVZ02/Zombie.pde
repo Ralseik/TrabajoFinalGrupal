@@ -1,24 +1,25 @@
 class Zombie implements IVisualizable {
-  private ImageComponent imgComponent;
+  private Gif gif;
   private Transform transform;
   private int resistencia;
   private float velocidad;
 
-  Zombie(ImageComponent imgComponent, Transform transform, int resistencia) {
-    this.imgComponent = imgComponent;
+  Zombie(Gif gif, Transform transform, int resistencia) {
+    this.gif = gif;
     this.transform = transform;
     this.resistencia = resistencia;
     this.velocidad = 25;
+    this.gif.play();
   }
 
   @Override
   public void display() {
     //Implementación del método display de la interfaz IVisualizable.
-    image(imgComponent.getImagen(), transform.getPosition().x, transform.getPosition().y);
+    image(gif, transform.getPosition().x, transform.getPosition().y);
   }
   
-  private ImageComponent getImagen() {
-      return imgComponent;
+  private Gif getGif() {
+      return gif;
   }
   
   public void debilitar(int puntos) {

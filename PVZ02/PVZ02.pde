@@ -21,6 +21,7 @@ private PImage pantallaDerrota;
 
 import gifAnimation.*;
 private Gif gifGirasol;
+private Gif gifZombie;
 
 public void setup() {
   size(1280, 720);
@@ -58,20 +59,21 @@ public void setup() {
     girasoles.add(new Girasol(gifGirasol, girasolPosicion));
   }
   
-  // Inicialización de los componentes del lanzaguisantes.
+  //Inicialización de los componentes del lanzaguisantes.
   ImageComponent lanzaguisanteImagen = new ImageComponent(loadImage("lanzaguisantes.png"));
   Transform lanzaguisantePosicion = new Transform(500, height/2-20);
   lanzaguisante = new Lanzaguisante(lanzaguisanteImagen, lanzaguisantePosicion);
   
   //Inicialización del gestor de colisiones entre proyectiles y zombies.
   gestor = new GestorZombies();
-  //Inicialización del componente "ImageComponent" de los zombies.
-  ImageComponent zombieImagen = new ImageComponent(loadImage("zombie.png"));
+  
+  //Inicialización de la animación para el girasol.
+  gifZombie = new Gif(this, "zombie.gif");
   
   //Inicialización del componente "Transform" de los zombies.
   for (int i=0; i<5; i++) {
     Transform zombiePosicion = new Transform(random(width/2+108, width-108), random(66, height-198));
-    gestor.agregarZombie(new Zombie(zombieImagen, zombiePosicion, 100));
+    gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
   }
 }
 
