@@ -1,13 +1,22 @@
 class Pantalla {
   private int estadoPantalla;
-
+  
+  private float tiempoTranscurrido;  
+  private float tiempoUltimaGeneracion;
+  private boolean generacionZombiesActiva;
+  
   Pantalla() {
     estadoPantalla = MaquinaEstadosPantalla.MENU;
+    tiempoTranscurrido = 0;
+    generacionZombiesActiva = true;
   }
 
   public void actualizarEstado() {
     //Implementación del método dedicado a actualizar la pantalla del juego. 
     background(255);
+    
+    //Actualizar la lógica del tiempo.
+    actualizarTiempo();
 
     switch (estadoPantalla) {
       //Encapsulación de los métodos que contienen cada pantalla.
@@ -27,6 +36,48 @@ class Pantalla {
       mostrarVictoria();
       break;
     }
+  }
+  
+  private void actualizarTiempo() {
+    //Incrementar el tiempo transcurrido.
+    tiempoTranscurrido += time.getDeltaTime();
+    
+    //Actualizar el tiempo desde la última generación de zombies.
+    tiempoUltimaGeneracion += time.getDeltaTime();
+    
+    //Verificar si ha pasado el intervalo de tiempo para generar nuevos zombies.
+    if (tiempoUltimaGeneracion >= 5) {
+      generarZombie();
+      tiempoUltimaGeneracion = 0; //Reiniciar el cronómetro para generar más zombies.
+    }
+    
+    //Verificar si ha pasado el tiempo límite para detener la generación de zombies.
+    if (tiempoTranscurrido >= 65) {
+      generacionZombiesActiva = false;
+    }
+    
+    //Verificar si ha pasado el tiempo límite para decidir el resultado del juego.
+    if (tiempoTranscurrido >= 55) {
+      if (gestor.zombies.isEmpty()) {
+      } else {
+        perderJuego();
+      }
+    }
+  }
+  
+  private void generarZombie() {
+    if (generacionZombiesActiva) {
+      Transform zombiePosicion = new Transform(width, random(66, height-198));
+      gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
+    }
+  }
+
+  private void mostrarTiempo() {
+    fill(#FFFFFF);
+    textSize(32);
+    textAlign(RIGHT);
+    String tiempoTexto = String.format("Tiempo: %d", (int) tiempoTranscurrido);
+    text(tiempoTexto, width - 20, 40);
   }
   
   private void mostrarMenu() {
@@ -82,6 +133,8 @@ class Pantalla {
         proyectiles.remove(i);
       }
     }
+    
+    mostrarTiempo();
   }
   
   private void mostrarVictoria() {
@@ -135,10 +188,17 @@ class Pantalla {
   
     //Zombies.
     for (int i=0; i<5; i++) {
-      Transform zombiePosicion = new Transform(random(width/2+108, width-108), random(66, height-198));
+      Transform zombiePosicion = new Transform(width, random(66, height-198));
       gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
     }
-  }
+    
+    //Reestablecer el cronómetro del juego.
+    tiempoTranscurrido = 0;
+    //Reestablecer el tiempo desde la última generación de zombies.
+    tiempoUltimaGeneracion = 0;
+    //Activar nuevamente la generación de los zombies.
+    generacionZombiesActiva = true;
+}
   
   public void keyPressed() {
     //Manejo de teclas según el estado de la pantalla actual
