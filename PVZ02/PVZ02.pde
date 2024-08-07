@@ -72,7 +72,7 @@ public void setup() {
   
   //Inicialización del componente "Transform" de los zombies.
   for (int i=0; i<5; i++) {
-    Transform zombiePosicion = new Transform(random(width/2+108, width-108), random(66, height-198));
+    Transform zombiePosicion = new Transform(width, random(66, height-198));
     gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
   }
 }
