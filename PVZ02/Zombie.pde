@@ -8,7 +8,7 @@ class Zombie implements IVisualizable {
     this.gif = gif;
     this.transform = transform;
     this.resistencia = resistencia;
-    this.velocidad = 25;
+    this.velocidad = 35;
     this.gif.play();
   }
 

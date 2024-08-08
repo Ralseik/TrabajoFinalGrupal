@@ -1,7 +1,7 @@
-class GestorZombies {
+class GestorCollisiones {
   private ArrayList<Zombie> zombies;
 
-  GestorZombies() {
+  GestorCollisiones() {
     zombies = new ArrayList<Zombie>();
   }
 

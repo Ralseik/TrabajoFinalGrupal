@@ -68,7 +68,7 @@ class Pantalla {
   private void generarZombie() {
     if (generacionZombiesActiva) {
       Transform zombiePosicion = new Transform(width, random(66, height-198));
-      gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
+      gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 50));
     }
   }
 
@@ -175,7 +175,7 @@ class Pantalla {
     girasoles.clear();
     
     //Inicializar nuevamente todos los objetos y componentes del juego.
-    gestor = new GestorZombies();
+    gestor = new GestorCollisiones();
     
     //Lanzaguisante.
     lanzaguisante = new Lanzaguisante(new ImageComponent(loadImage("lanzaguisantes.png")), new Transform(500, height/2-20));

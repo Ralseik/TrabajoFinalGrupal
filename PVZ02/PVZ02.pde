@@ -7,7 +7,7 @@ private AudioPlayer musicaVictoria;
 private AudioPlayer musicaDerrota;
 
 private Lanzaguisante lanzaguisante;
-private GestorZombies gestor;
+private GestorCollisiones gestor;
 private Pantalla pantalla;
 private Time time;
 
@@ -65,7 +65,7 @@ public void setup() {
   lanzaguisante = new Lanzaguisante(lanzaguisanteImagen, lanzaguisantePosicion);
   
   //Inicialización del gestor de colisiones entre proyectiles y zombies.
-  gestor = new GestorZombies();
+  gestor = new GestorCollisiones();
   
   //Inicialización de la animación para el girasol.
   gifZombie = new Gif(this, "zombie.gif");
@@ -73,7 +73,7 @@ public void setup() {
   //Inicialización del componente "Transform" de los zombies.
   for (int i=0; i<5; i++) {
     Transform zombiePosicion = new Transform(width, random(66, height-198));
-    gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 100));
+    gestor.agregarZombie(new Zombie(gifZombie, zombiePosicion, 50));
   }
 }
 
