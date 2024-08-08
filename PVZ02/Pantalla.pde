@@ -77,7 +77,7 @@ class Pantalla {
     textSize(32);
     textAlign(RIGHT);
     String tiempoTexto = String.format("Tiempo: %d", (int) tiempoTranscurrido);
-    text(tiempoTexto, width - 20, 40);
+    text(tiempoTexto, width - 100, 55);
   }
   
   private void mostrarMenu() {
