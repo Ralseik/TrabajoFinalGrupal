@@ -1,4 +1,4 @@
-class MaquinaEstadosLanzaguisante {
+static class MaquinaEstadosLanzaguisante {
 
   public static final int moveUp = 1;
   public static final int moveDown = 2;
